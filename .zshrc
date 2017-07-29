@@ -8,7 +8,6 @@ export EDITOR='vi'
 source $ZSH/oh-my-zsh.sh
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
-alias dev="cd /c/dev/"
 alias ll="ls -la --color"
 alias week='date +"%V"'
 #PROMPT='%(?..%{$fg_bold[red]%}exit %?
