@@ -1,0 +1,28 @@
+#!/bin/bash
+
+index=0
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+last_branches=()
+
+light_green="\033[1;32m"
+nc='\033[0m'
+
+while read branch; do
+	last_branches+=(${branch})
+	if [ "${current_branch}" == "${branch}" ]; then
+		echo -e "${light_green}* ${index} - ${branch}${nc}"
+	else
+		echo "${index} - ${branch}"
+	fi
+	let "index++"
+done <<< "$(git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)')"
+
+echo -n "Input the wished for branch index: "
+read index
+
+git stash
+
+git checkout ${last_branches[${index}]}
+
+git stash list | head -n 5
