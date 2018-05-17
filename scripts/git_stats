@@ -1,0 +1,8 @@
+#!/bin/bash
+
+commits=$(git shortlog -s -n --all)
+
+while read i; do
+	nr_of_commits=$(echo "$commits" | grep "$i")
+	git log --shortstat --author="$i" | grep -E "fil(e|es) changed" | awk -v var="$(echo $nr_of_commits | cut -d' ' -f1)" -v author="$i" '{files+=$1; inserted+=$4; deleted+=$6} END {printf "Files changed: %-6s Inserted: %-8s Deleted: %-8s Total: %-8s Commits: %-5s Author: %-50s", files, inserted, deleted, inserted+deleted, var, author}' | grep -v "Files:   inserted:   deleted:"
+done < <(git log --format='%aN' | sort -u) | sort -r -n -k $1
