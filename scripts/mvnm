@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a arr=("repository names here") #TODO: extract to separate file
+declare -a arr=("repository names here") # TODO: extract to separate file
 
 run_mvn() {
 	cd ${1}
