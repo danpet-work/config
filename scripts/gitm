@@ -1,7 +1,9 @@
 #!/bin/bash
-# Useful git alias: 'status --short --branch'
+# Useful git alias: 
+#	'status --short --branch'
+#	'push -f origin $(git rev-parse --abbrev-ref HEAD)'
 
-declare -a arr=("sl-common" "sl-utility" "sl-apputility" "sl-properties" "sl-appserver" "sl-authentication" "sl-batcher" "sl-batcherappserver" "sl-priceandproduct" "sl-ticketmaster" "sl-validatormaster")
+declare -a arr=("repositories here") # TODO: extract this to separate file.
 
 function run_git {
 	echo "=================================================="

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+declare -a arr=("repository names here") #TODO: extract to separate file
+
+run_mvn() {
+	cd ${1}
+	mvn "${@:2}"
+	cd -
+}
+
+curr_dir=$(pwd)
+
+cd /mnt/c/workspace
+
+for i in "${arr[@]}"
+do
+	run_mvn ${i} ${@}
+done
+
+cd ${curr_dir}
