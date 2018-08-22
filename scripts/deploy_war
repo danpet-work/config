@@ -1,0 +1,23 @@
+#!/bin/bash
+
+tomcat_dir="/mnt/c/tomcat/apache-tomcat-8.0.52/webapps"
+
+echo "Building war..."
+war=$(mvn war:war | grep "Building war:" | cut -d' ' -f4)
+
+war_name=$(basename -s .war $war)
+
+echo "Trying to deploy $war"
+
+if [ -d "$tomcat_dir/$war_name" ]; then
+	echo "Already deployed, re-deploy it?"
+	select yn in "Yes" "No"; do
+	    case $yn in
+        	Yes ) rm -r "$tomcat_dir/$war_name"; break;;
+	        No ) exit;;
+	    esac
+	done
+fi
+cp -v $war $tomcat_dir
+
+echo "Done!"
