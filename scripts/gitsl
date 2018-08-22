@@ -1,0 +1,14 @@
+#!/bin/bash
+
+declare -a arr=("sl-common" "sl-utility" "sl-apputility" "sl-properties" "sl-appserver" "sl-authentication" "sl-batcher" "sl-batcherappserver" "sl-priceandproduct" "sl-ticketmaster" "sl-validatormaster")
+
+function run_git {
+	echo "=================================================="
+	echo "Repository: ${1}"
+	git --git-dir "/mnt/c/workspace/${1}/.git" --work-tree="/mnt/c/workspace/${1}" "${@:2}"
+}
+
+for i in "${arr[@]}"
+do
+	run_git ${i} ${@}
+done

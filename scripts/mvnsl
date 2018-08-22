@@ -1,0 +1,20 @@
+#!/bin/bash
+
+declare -a arr=("sl-common" "sl-utility" "sl-apputility" "sl-properties" "sl-appserver" "sl-authentication" "sl-batcher" "sl-batcherappserver" "sl-priceandproduct" "sl-ticketmaster" "sl-validatormaster")
+
+run_mvn() {
+	cd ${1}
+	mvn "${@:2}"
+	cd -
+}
+
+curr_dir=$(pwd)
+
+cd /mnt/c/workspace
+
+for i in "${arr[@]}"
+do
+	run_mvn ${i} ${@}
+done
+
+cd ${curr_dir}
