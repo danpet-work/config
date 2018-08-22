@@ -1,4 +1,5 @@
 #!/bin/bash
+# Useful git alias: 'status --short --branch'
 
 declare -a arr=("sl-common" "sl-utility" "sl-apputility" "sl-properties" "sl-appserver" "sl-authentication" "sl-batcher" "sl-batcherappserver" "sl-priceandproduct" "sl-ticketmaster" "sl-validatormaster")
 
